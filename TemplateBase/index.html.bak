@@ -126,50 +126,50 @@
           <div class="row gx-5 justify-content-center">
             <div class="col-lg-8 col-xl-6">
               <div class="text-center">
-                <h2 class="fw-bolder text-secondary">Proyecto Plataforma Recogida de
+                <h2 class="fw-bolder text-light">Proyecto Plataforma Recogida de
                   Paquetes InstaYA!</h2>
               </div>
             </div>
           </div>
           <div class="container px-5 my-5">
             <div class="text-center">
-              <h2 class="fw-bolder text-light">Misión TIC Uninorte</h2>
-              <p class="lead fw-normal text-light mb-5">NRC 2240 - Grupo 10</p>
+              <h2 class="fw-bolder">Our team</h2>
+              <p class="lead fw-normal text-muted mb-5 text-light">Nuestro Equipo</p>
             </div>
             <div class="row gx-5 row-cols-1 row-cols-sm-2 row-cols-xl-5 justify-content-center">
               <div class="col mb-5 mb-5 mb-xl-0">
                 <div class="text-center"> <img class="img-fluid rounded-circle mb-4 px-4"
-                    src="assets/integrantes-01.jpg" alt="...">
-                  <h5 class="fw-bolder text-light">Ezequiel Elguedo Santander</h5>
-                  <div class="fst-italic text-secondary">Frontend Developer</div>
+                    src="https://dummyimage.com/150x150/ced4da/6c757d" alt="...">
+                  <h5 class="fw-bolder">Ibbie Eckart</h5>
+                  <div class="fst-italic text-muted">Founder &amp; CEO</div>
                 </div>
               </div>
                             <div class="col mb-5 mb-5 mb-xl-0">
                 <div class="text-center"> <img class="img-fluid rounded-circle mb-4 px-4"
-                    src="assets/integrantes-02.jpg" alt="...">
-                  <h5 class="fw-bolder text-light">Alfredo Nuñez Dickson</h5>
-                  <div class="fst-italic text-secondary">Frontend developer</div>
-                </div>
-              </div>
-              <div class="col mb-5 mb-5 mb-sm-0">
-                <div class="text-center"> <img class="img-fluid rounded-circle mb-4 px-4"
-                    src="assets/integrantes-03.jpg" alt="...">
-                  <h5 class="fw-bolder text-light">Johnny De Castro Martinez</h5>
-                  <div class="fst-italic text-secondary">FullStack developer </div>
+                    src="https://dummyimage.com/150x150/ced4da/6c757d" alt="...">
+                  <h5 class="fw-bolder">Ibbie Eckart</h5>
+                  <div class="fst-italic text-muted">Founder &amp; CEO</div>
                 </div>
               </div>
               <div class="col mb-5 mb-5 mb-xl-0">
                 <div class="text-center"> <img class="img-fluid rounded-circle mb-4 px-4"
-                    src="assets/integrantes-04.jpg" alt="...">
-                  <h5 class="fw-bolder text-light">Daniel Abudinen Ordoñez</h5>
-                  <div class="fst-italic text-secondary">Gestor de DB / QA tester</div>
+                    src="https://dummyimage.com/150x150/ced4da/6c757d" alt="...">
+                  <h5 class="fw-bolder">Arden Vasek</h5>
+                  <div class="fst-italic text-muted">CFO</div>
+                </div>
+              </div>
+              <div class="col mb-5 mb-5 mb-sm-0">
+                <div class="text-center"> <img class="img-fluid rounded-circle mb-4 px-4"
+                    src="https://dummyimage.com/150x150/ced4da/6c757d" alt="...">
+                  <h5 class="fw-bolder">Toribio Nerthus</h5>
+                  <div class="fst-italic text-muted">Operations Manager</div>
                 </div>
               </div>
               <div class="col mb-5">
                 <div class="text-center"> <img class="img-fluid rounded-circle mb-4 px-4"
-                    src="assets/integrantes-05.jpg" alt="...">
-                  <h5 class="fw-bolder text-light">Elkin López Barrios</h5>
-                  <div class="fst-italic text-secondary">Backend Developer</div>
+                    src="https://dummyimage.com/150x150/ced4da/6c757d" alt="...">
+                  <h5 class="fw-bolder">Malvina Cilla</h5>
+                  <div class="fst-italic text-muted">CTO</div>
                 </div>
               </div>
             </div>
@@ -182,11 +182,12 @@
       <div class="container px-5">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
           <div class="col-auto">
-            <div class="small m-0 text-white">Copyright © InstaYA! 2022</div>
+            <div class="small m-0 text-white">Copyright © Your Website 2022</div>
           </div>
-          <div class="col-auto"> 
-            <a class="link-light" href="https://github.com/dabudinen/app-paquetes"><i class="bi bi-github"></i> Github del proyecto</a>
-          </div>
+          <div class="col-auto"> <a class="link-light small" href="#%21">Privacy</a>
+            <span class="text-white mx-1">·</span> <a class="link-light small"
+              href="#%21">Terms</a> <span class="text-white mx-1">·</span> <a
+              class="link-light small" href="#%21">Contact</a> </div>
         </div>
       </div>
     </footer>
