@@ -1,12 +1,5 @@
 import { useState } from 'react'  
-import instaLogo from './assets/img/logo-instaya.png'
-import instaLogoBig from './assets/img/logo.png'
-import integrantes1 from './assets/img/integrantes-01.jpg'
-import integrantes2 from './assets/img/integrantes-02.jpg'
-import integrantes3 from './assets/img/integrantes-03.jpg'
-import integrantes4 from './assets/img/integrantes-04.jpg'
-import integrantes5 from './assets/img/integrantes-05.jpg'
-import bannerCamion from './assets/img/imagen-banner-camion.png'
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -15,7 +8,7 @@ function App() {
     <main className="flex-shrink-0">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container px-5"> 
-        <img src={instaLogo} alt="InstaYa!"  title="InstaYa!" />&nbsp;<button className="navbar-toggler" type="button"
+        <img src="/img/logo-instaya.png" alt="InstaYa!"  title="InstaYa!" />&nbsp;<button className="navbar-toggler" type="button"
             data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -66,7 +59,7 @@ function App() {
               </div>
             </div>
             <div className="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img className="img-fluid rounded-3 my-5"
-                src={instaLogoBig} alt="..." /></div>
+                src="/img/logo.png" alt="..." /></div>
           </div>
         </div>
       </header>
@@ -112,7 +105,7 @@ function App() {
       </section>
       {/* testimonial  */}
       <section className="py-5 bg-light" id="scroll-target">
-        <div className="col-sm-12 text-center"> <img className="center-block" src={bannerCamion}
+        <div className="col-sm-12 text-center"> <img className="center-block" src="/img/imagen-banner-camion.png"
             alt="" /></div>
       </section>
       {/* blog */}
@@ -134,35 +127,35 @@ function App() {
             <div className="row gx-5 row-cols-1 row-cols-sm-2 row-cols-xl-5 justify-content-center">
               <div className="col mb-5 mb-5 mb-xl-0">
                 <div className="text-center"> <img className="img-fluid rounded-circle mb-4 px-4"
-                    src={integrantes1} alt="..." />
+                    src="/img/integrantes-01.jpg" alt="..." />
                   <h5 className="fw-bolder text-light">Ezequiel Elguedo Santander</h5>
                   <div className="fst-italic text-secondary">Frontend Developer</div>
                 </div>
               </div>
                             <div className="col mb-5 mb-5 mb-xl-0">
                 <div className="text-center"> <img className="img-fluid rounded-circle mb-4 px-4"
-                    src={integrantes2} alt="" />
+                    src="/img/integrantes-02.jpg" alt="" />
                   <h5 className="fw-bolder text-light">Alfredo Nuñez Dickson</h5>
                   <div className="fst-italic text-secondary">Frontend developer</div>
                 </div>
               </div>
               <div className="col mb-5 mb-5 mb-sm-0">
                 <div className="text-center"> <img className="img-fluid rounded-circle mb-4 px-4"
-                    src={integrantes3} alt="" />
+                    src="/img/integrantes-03.jpg" alt="" />
                   <h5 className="fw-bolder text-light">Johnny De Castro Martinez</h5>
                   <div className="fst-italic text-secondary">FullStack developer </div>
                 </div>
               </div>
               <div className="col mb-5 mb-5 mb-xl-0">
                 <div className="text-center"> <img className="img-fluid rounded-circle mb-4 px-4"
-                    src={integrantes4} alt="" />
+                    src="/img/integrantes-04.jpg" alt="" />
                   <h5 className="fw-bolder text-light">Daniel Abudinen Ordoñez</h5>
                   <div className="fst-italic text-secondary">Gestor de DB / QA tester</div>
                 </div>
               </div>
               <div className="col mb-5">
                 <div className="text-center"> <img className="img-fluid rounded-circle mb-4 px-4"
-                    src={integrantes5} alt="" />
+                    src="/img/integrantes-05.jpg" alt="" />
                   <h5 className="fw-bolder text-light">Elkin López Barrios</h5>
                   <div className="fst-italic text-secondary">Backend Developer</div>
                 </div>
