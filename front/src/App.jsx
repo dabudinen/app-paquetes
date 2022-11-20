@@ -8,6 +8,7 @@ import PageRegister from "./components/PageRegister";
 import PagePackageManager from "./components/PagePackageManager";
 import PageContact from "./components/PageContact";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import PageEstadosEnvios from "./components/PageEstadosEnvios";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -23,6 +24,7 @@ function App() {
             <Route path="/register" element={<PageRegister />} />
             <Route path="/packagemanager" element={<PagePackageManager />} />
             <Route path="/contact" element={<PageContact />} />
+            <Route path="/estados_envios" element={<PageEstadosEnvios />} />
           </Routes>
         </Router>
         <Integrantes />
