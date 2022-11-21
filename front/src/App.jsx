@@ -9,6 +9,7 @@ import PagePackageManager from "./components/PagePackageManager";
 import PageContact from "./components/PageContact";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import PageEstadosEnvios from "./components/PageEstadosEnvios";
+import PageNuevoEnvio from "./components/PageNuevoEnvio";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -25,6 +26,7 @@ function App() {
             <Route path="/packagemanager" element={<PagePackageManager />} />
             <Route path="/contact" element={<PageContact />} />
             <Route path="/estados_envios" element={<PageEstadosEnvios />} />
+            <Route path="/nuevo_envio" element={<PageNuevoEnvio />} />
           </Routes>
         </Router>
         <Integrantes />

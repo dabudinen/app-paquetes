@@ -5,7 +5,6 @@ export default function PageLogin() {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("click on submit")
     navigate("/estados_envios")
   }
   return (
