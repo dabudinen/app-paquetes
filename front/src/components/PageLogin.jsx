@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function PageLogin() {
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("click on submit")
+    navigate("/estados_envios")
+  }
   return (
     <section className="bg-light py-5 ">
       <div className="container px-5 my-5">
@@ -42,7 +49,7 @@ export default function PageLogin() {
                         </div>
 
                         <div className="pt-1 mb-4">
-                          <button className="btn btn-dark btn-lg btn-block" type="button">Login</button>
+                          <button className="btn btn-dark btn-lg btn-block" type="button" onClick={handleSubmit}>Login</button>
                         </div>
 
                         <a className="small text-muted" href="#!">Forgot password?</a>
