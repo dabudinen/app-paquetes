@@ -5,3 +5,6 @@ h2.principal {
 .textmsj {
     height: 10rem
 }
+.input-group-append {
+    cursor: pointer;
+  }

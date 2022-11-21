@@ -29,7 +29,7 @@ export default function PageRegister() {
                         </div>
 
                         <h5 className="fw-normal mb-3 pb-3">
-                          Sign into your account
+                          Ingresa a tu cuenta
                         </h5>
 
                         <div className="row">
@@ -42,9 +42,9 @@ export default function PageRegister() {
                               />
                               <label
                                 className="form-label"
-                                for="form3Example1m"
+                                htmlFor="form3Example1m"
                               >
-                                First name
+                                Nombre
                               </label>
                             </div>
                           </div>
@@ -57,16 +57,28 @@ export default function PageRegister() {
                               />
                               <label
                                 className="form-label"
-                                for="form3Example1n"
+                                htmlFor="form3Example1n"
                               >
-                                Last name
+                                Apellido
                               </label>
                             </div>
-                          </div>
+                          
+                          {/*<input
+                                type="number"
+                                id="form3Example3m"
+                                className="form-control form-control-lg"
+                              />
+                              <label
+                                className="form-label"
+                                htmlFor="form3Example3m"
+                              >
+                               C.C.
+  </label>*/ }
+                              </div>
                         </div>
 
                         <div className="d-md-flex justify-content-start align-items-center mb-4 py-2">
-                          <h6 className="mb-0 me-4">Gender: </h6>
+                          <h6 className="mb-0 me-4">Género: </h6>
 
                           <div className="form-check form-check-inline mb-0 me-4">
                             <input
@@ -78,9 +90,9 @@ export default function PageRegister() {
                             />
                             <label
                               className="form-check-label"
-                              for="femaleGender"
+                              htmlFor="femaleGender"
                             >
-                              Female
+                              Mujer
                             </label>
                           </div>
 
@@ -94,9 +106,9 @@ export default function PageRegister() {
                             />
                             <label
                               className="form-check-label"
-                              for="maleGender"
+                              htmlFor="maleGender"
                             >
-                              Male
+                              Hombre
                             </label>
                           </div>
 
@@ -110,9 +122,9 @@ export default function PageRegister() {
                             />
                             <label
                               className="form-check-label"
-                              for="otherGender"
+                              htmlFor="otherGender"
                             >
-                              Other
+                              Otro
                             </label>
                           </div>
                         </div>
@@ -120,7 +132,7 @@ export default function PageRegister() {
                         <div className="row">
                           <div className="col-md-6 mb-4">
                             <select className="select">
-                              <option value="1">State</option>
+                              <option value="1">Departamento</option>
                               <option value="2">Option 1</option>
                               <option value="3">Option 2</option>
                               <option value="4">Option 3</option>
@@ -128,7 +140,7 @@ export default function PageRegister() {
                           </div>
                           <div className="col-md-6 mb-4">
                             <select className="select">
-                              <option value="1">City</option>
+                              <option value="1">Ciudad</option>
                               <option value="2">Option 1</option>
                               <option value="3">Option 2</option>
                               <option value="4">Option 3</option>
@@ -142,7 +154,7 @@ export default function PageRegister() {
                             id="form3Example90"
                             className="form-control form-control-lg"
                           />
-                          <label className="form-label" for="form3Example90">
+                          <label className="form-label" htmlFor="form3Example90">
                             Direccion
                           </label>
                         </div>
@@ -153,7 +165,7 @@ export default function PageRegister() {
                             id="form3Example97"
                             className="form-control form-control-lg"
                           />
-                          <label className="form-label" for="form3Example97">
+                          <label className="form-label" htmlFor="form3Example97">
                             Email ID
                           </label>
                         </div>
@@ -163,7 +175,7 @@ export default function PageRegister() {
                             type="reset"
                             className="btn btn-danger btn-lg"
                           >
-                            Reset all
+                            Borrar
                           </button>
                           <a href="/login">
                           <button
@@ -178,7 +190,7 @@ export default function PageRegister() {
                             type="button"
                             className="btn btn-warning btn-lg ms-2"
                           >
-                            Submit form
+                            Enviar
                           </button>
                         </div>
                       </form>
