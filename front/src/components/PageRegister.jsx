@@ -42,7 +42,7 @@ export default function PageRegister() {
                               />
                               <label
                                 className="form-label"
-                                for="form3Example1m"
+                                htmlFor="form3Example1m"
                               >
                                 First name
                               </label>
@@ -57,7 +57,7 @@ export default function PageRegister() {
                               />
                               <label
                                 className="form-label"
-                                for="form3Example1n"
+                                htmlFor="form3Example1n"
                               >
                                 Last name
                               </label>
@@ -78,7 +78,7 @@ export default function PageRegister() {
                             />
                             <label
                               className="form-check-label"
-                              for="femaleGender"
+                              htmlFor="femaleGender"
                             >
                               Female
                             </label>
@@ -94,7 +94,7 @@ export default function PageRegister() {
                             />
                             <label
                               className="form-check-label"
-                              for="maleGender"
+                              htmlFor="maleGender"
                             >
                               Male
                             </label>
@@ -110,7 +110,7 @@ export default function PageRegister() {
                             />
                             <label
                               className="form-check-label"
-                              for="otherGender"
+                              htmlFor="otherGender"
                             >
                               Other
                             </label>
@@ -142,7 +142,7 @@ export default function PageRegister() {
                             id="form3Example90"
                             className="form-control form-control-lg"
                           />
-                          <label className="form-label" for="form3Example90">
+                          <label className="form-label" htmlFor="form3Example90">
                             Direccion
                           </label>
                         </div>
@@ -153,7 +153,7 @@ export default function PageRegister() {
                             id="form3Example97"
                             className="form-control form-control-lg"
                           />
-                          <label className="form-label" for="form3Example97">
+                          <label className="form-label" htmlFor="form3Example97">
                             Email ID
                           </label>
                         </div>
