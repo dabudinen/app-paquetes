@@ -24,7 +24,7 @@ export function Header() {
                 >
                   Conoce nuestros servicios
                 </a>{" "}
-                <a className="btn btn-outline-light btn-lg px-4" href="/login">
+                <a className="btn btn-warning btn-lg px-4" href="/login">
                   Ver estado de tu envío
                 </a>{" "}
               </div>

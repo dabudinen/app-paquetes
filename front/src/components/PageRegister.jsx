@@ -160,11 +160,20 @@ export default function PageRegister() {
 
                         <div className="d-flex justify-content-end pt-3">
                           <button
-                            type="button"
-                            className="btn btn-light btn-lg"
+                            type="reset"
+                            className="btn btn-danger btn-lg"
                           >
                             Reset all
                           </button>
+                          <a href="/login">
+                          <button
+                            type="button"
+                            className="btn btn-primary btn-lg ms-2"
+                          >
+                            Ya tienes cuenta? 
+                          </button >
+                          </a>
+                          
                           <button
                             type="button"
                             className="btn btn-warning btn-lg ms-2"
