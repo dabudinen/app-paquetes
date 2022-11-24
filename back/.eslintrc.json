@@ -13,3 +13,4 @@
     "class-methods-use-this": "off",
     "node/no-unsupported-features/es-syntax": "off"
   }
+}
