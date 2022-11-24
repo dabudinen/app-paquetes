@@ -1,5 +1,6 @@
 import React from "react";
 import NavbarNav from "./NavbarNav";
+import Navbutton from "./Navbutton";
 
 export function Nav() {
   const menus = [
@@ -31,17 +32,7 @@ export function Nav() {
           <img src="/img/logo-instaya.png" alt="InstaYa!" title="InstaYa!" />
         </a>
         &nbsp;
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        <Navbutton />
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <NavbarNav menus={menus} />
         </div>
