@@ -1,13 +1,21 @@
 import Users from './schema';
 import * as argon2 from 'argon2';
-import jwt from 'jsonwebtoken';
+// import jwt from 'jsonwebtoken';
 // const { sign, verify } = jwt;
 
-// ok
+// registro de usuarios
 export const addUser = async (req, res) => {
   const data = req.body;
   if (!data.firstName || !data.password || !data.email || !data.documentId) {
     return res.status(400).json({ message: 'Debes rellenar todos los campos' });
+  }
+  const checkID = await Users.find({ firstName: data.documentId });
+  const checkEmail = await Users.find({ email: data.email });
+  console.log(checkID.length);
+  if (checkID.length || checkEmail.length) {
+    return res
+      .status(400)
+      .json({ message: 'El ID o email ya existe en nuestra DB' });
   }
   try {
     const hash = await argon2.hash(req.body.password);
@@ -31,7 +39,7 @@ export const addUser = async (req, res) => {
 export const login = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-
+  // await Users.find({ email: data.email });
   const user = await Users.findOne({ email }).select('password');
   if (!user) {
     res.json({
@@ -41,7 +49,14 @@ export const login = async (req, res) => {
   } else {
     try {
       if (await argon2.verify(user.password, password)) {
-        res.send('Todo cool' + user);
+        //
+        // res.cookie(`cookie_session`, 'cookieval', {
+        //   maxAge: 604800000, // 7 days
+        //   secure: true,
+        //   httpOnly: true,
+        //   sameSite: 'lax',
+        // });
+        res.json({ message: `Todo cool ${user}` });
       } else {
         res.json({
           message: 'datos inválidos, verifica tu usuario y/o clave',
@@ -62,20 +77,26 @@ export const delUser = (req, res) => {
   res.json('MyVariable');
 };
 // Funcion sin completar
-const auth = (req, res, next) => {
-  const token = req.cookies.access_token;
-  if (!token) {
-    return res.sendStatus(403);
-  }
-  try {
-    const data = jwt.verify(token, 'MITOKKKKK');
-    req.userId = data.id;
-    req.userRole = data.role;
-    return next();
-  } catch {
-    return res.sendStatus(403);
-  }
-};
+// const auth = (req, res, next) => {
+//   const token = req.cookies.access_token;
+//   if (!token) {
+//     return res.sendStatus(403);
+//   }
+//   try {
+//     const data = jwt.verify(token, 'MITOKKKKK');
+//     req.userId = data.id;
+//     req.userRole = data.role;
+//     return next();
+//   } catch {
+//     return res.sendStatus(403);
+//   }
+// };
+/*
+const token = sign({"d":"dd"}, "secret", {expiresIn: 300})
+console.log(token);
+const verifycode = verify(token, "secret");
+console.log(verifycode);
+*/
 
 export const updateUser = (req, res) => {
   res.json('MyVariable');
@@ -97,9 +118,3 @@ export const deleteCookie = (req, res) => {
   });
   res.send({ message: 'Los datos de su sesion han sido borrados' });
 };
-/*
-const token = sign({"d":"dd"}, "secret", {expiresIn: 300})
-console.log(token);
-const verifycode = verify(token, "secret");
-console.log(verifycode);
-*/
