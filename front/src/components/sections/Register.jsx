@@ -1,9 +1,52 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import SectionTitle from "../SectionTitle";
 import FormInput from "../FormInput";
 
 export default function PageRegister() {
-  return (
+  const msjs = "";
+  const [msj, setMsj] = useState(msjs);
+
+  const registro = async (e) => {
+    const newuser = {};
+    e.preventDefault();
+    
+    if (document.getElementById("nameid").value.length != 0) {
+      newuser.firstName = document.getElementById("nameid").value;
+    } else {
+      setMsj("el Campo Nombre está vacío");
+    }
+
+    newuser.lastName = document.getElementById("apellidoid").value;
+    newuser.documentId = document.getElementById("documentId").value;
+    newuser.email = document.getElementById("email").value;
+    const pw = document.getElementById("password").value;
+    let pww = document.getElementById("checkpassword").value;
+
+    if (!pw.length == 0 && pw === pww) {
+      setMsj("");
+      newuser.password = pw;
+    } else {
+      setMsj("El password no coincide");
+    }
+//     console.log(newuser);
+    const apiUrl = "http://127.0.0.1:3000/api/users/add";
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newuser),
+    });
+    const data = await response.json();
+    console.log(data)
+
+    setMsj(data.message);
+
+    
+    
+  };
+    return (
     <section className="bg-light py-5 ">
       <div className="container px-5 my-5">
         <SectionTitle
@@ -20,142 +63,47 @@ export default function PageRegister() {
                   </div>
                   <div className="col-md-6 col-lg-7 d-flex align-items-center">
                     <div className="card-body p-4 p-lg-5 text-black">
-{ /* Form start */}
-                      <form>
+                      {/* Form start */}
+                      <form onSubmit={registro}>
                         <div className="d-flex align-items-center mb-3 pb-1">
                           <span className="h1 fw-bold mb-0">
                             <img src="/img/logo-instaya.png" alt="" />
                           </span>
                         </div>
                         <h5 className="fw-normal mb-3 pb-3">
-                          Ingresa a tu cuenta
+                          Crea una nueva cuenta
                         </h5>
-
                         <div className="row">
-                          <FormInput />
-                          <div className="col-md-6 mb-4">
-                            <div className="form-outline">
-                              <input
-                                type="text"
-                                id="form3Example1n"
-                                className="form-control form-control-lg"
-                              />
-                              <label
-                                className="form-label"
-                                htmlFor="form3Example1n"
-                              >
-                                Apellido
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="d-md-flex justify-content-start align-items-center mb-4 py-2">
-                          <h6 className="mb-0 me-4">Género: </h6>
-
-                          <div className="form-check form-check-inline mb-0 me-4">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="inlineRadioOptions"
-                              id="femaleGender"
-                              value="option1"
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="femaleGender"
-                            >
-                              Mujer
-                            </label>
-                          </div>
-
-                          <div className="form-check form-check-inline mb-0 me-4">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="inlineRadioOptions"
-                              id="maleGender"
-                              value="option2"
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="maleGender"
-                            >
-                              Hombre
-                            </label>
-                          </div>
-
-                          <div className="form-check form-check-inline mb-0">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="inlineRadioOptions"
-                              id="otherGender"
-                              value="option3"
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="otherGender"
-                            >
-                              Otro
-                            </label>
-                          </div>
-                        </div>
-
-                        <div className="row">
-                          <div className="col-md-6 mb-4">
-                            <select className="select">
-                              <option value="1">Departamento</option>
-                              <option value="2">Option 1</option>
-                              <option value="3">Option 2</option>
-                              <option value="4">Option 3</option>
-                            </select>
-                          </div>
-                          <div className="col-md-6 mb-4">
-                            <select className="select">
-                              <option value="1">Ciudad</option>
-                              <option value="2">Option 1</option>
-                              <option value="3">Option 2</option>
-                              <option value="4">Option 3</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div className="form-outline mb-4">
-                          <input
-                            type="text"
-                            id="form3Example90"
-                            className="form-control form-control-lg"
+                          <FormInput
+                            label="Nombre"
+                            inputId="nameid"
+                            optionalClass="form-floating col-md-6 mb-4"
                           />
-                          <label
-                            className="form-label"
-                            htmlFor="form3Example90"
-                          >
-                            Direccion
-                          </label>
-                        </div>
-
-                        <div className="form-outline mb-4">
-                          <input
-                            type="text"
-                            id="form3Example97"
-                            className="form-control form-control-lg"
+                          <FormInput
+                            label="Apellido"
+                            inputId="apellidoid"
+                            optionalClass="form-floating col-md-6 mb-4"
                           />
-                          <label
-                            className="form-label"
-                            htmlFor="form3Example97"
-                          >
-                            Email ID
-                          </label>
                         </div>
 
+                        <FormInput label="Dirección" inputId="direccion" />
+                        <FormInput
+                          label="Documento de Identidad"
+                          inputId="documentId"
+                        />
+                        <FormInput label="Email" inputId="email" type="email" />
+                        <FormInput
+                          label="Clave"
+                          inputId="password"
+                          type="password"
+                        />
+                        <FormInput
+                          label="Verificar Clave"
+                          inputId="checkpassword"
+                          type="password"
+                        />
+                        <span className="text-danger">{msj}</span>
                         <div className="d-flex justify-content-end pt-3">
-                          <button
-                            type="reset"
-                            className="btn btn-danger btn-lg"
-                          >
-                            Borrar
-                          </button>
                           <a href="/login">
                             <button
                               type="button"
@@ -166,14 +114,14 @@ export default function PageRegister() {
                           </a>
 
                           <button
-                            type="button"
+                            type="submit"
                             className="btn btn-warning btn-lg ms-2"
                           >
                             Enviar
                           </button>
                         </div>
                       </form>
-{ /* Form end */}
+                      {/* Form end */}
                     </div>
                   </div>
                 </div>

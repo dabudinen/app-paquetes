@@ -5,12 +5,17 @@ import express from 'express';
 import path from 'path';
 import { welcome } from './welcome';
 import users from './users';
+const cors = require('cors');
 // import package from './pickuprequest';
 const cookieParser = require('cookie-parser');
 const favicon = require('serve-favicon');
 
 const app = express();
-
+app.use(
+  cors({
+    origin: '*',
+  })
+);
 app.use(compression());
 app.use(urlencoded({ extended: false }));
 app.use(json());

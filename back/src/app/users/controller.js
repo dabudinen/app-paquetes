@@ -1,18 +1,12 @@
 import Users from './schema';
 import * as argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
-const { sign, verify } = jwt;
+// const { sign, verify } = jwt;
 
 // ok
 export const addUser = async (req, res) => {
   const data = req.body;
-  if (
-    !data ||
-    !data.username ||
-    !data.password ||
-    !data.email ||
-    !data.documentId
-  ) {
+  if (!data.firstName || !data.password || !data.email || !data.documentId) {
     return res.status(400).json({ message: 'Debes rellenar todos los campos' });
   }
   try {
