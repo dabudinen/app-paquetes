@@ -1,5 +1,46 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
+
+
+const label = [
+    "id",
+    "Fecha de envio",
+    "Estado de envio",
+    "Caracteristicas del paquete",
+    "Remitente",
+    "Destinatario",
+    "Editar"
+]
+
+const envios = [
+    {
+        id: "1",
+        pickupDate: "30/11/2022",
+        state: "Enviado",
+        weight: "21 kg",
+        sender: "Alfredo Nuñez",
+        toRecipient: "Johnny De Castro"
+    },
+
+    {
+        id: "2",
+        pickupDate: "28/11/2022",
+        state: "Enviado",
+        weight: "15 kg",
+        sender: "Elkin Lopez",
+        toRecipient: "Roderick Arias"
+    },
+
+    {
+        id: "3",
+        pickupDate: "20/11/2022",
+        state: "Entregado",
+        weight: "12 kg",
+        sender: "Daniel Abudinen",
+        toRecipient: "Alfredo Nuñez"
+    }
+
+]
 
 export default function PageEstadosEnvios() {
     const navigate = useNavigate();
@@ -18,48 +59,30 @@ export default function PageEstadosEnvios() {
             </div>
             <table className="table" class="table table-striped">
             <thead>
+                {/* Creación de encabezado de tabla */}
                 <tr>
-                <th scope="col">id</th>
-                <th scope="col">Fecha de envio</th>
-                <th scope="col">Estado de envio</th>
-                <th scope="col">Caracteristicas del paquete</th>
-                <th scope="col">Remitente</th>
-                <th scope="col">Destinatario</th>
+                {label.map((label, index) => {
+                                return (<th key={index} scope="col">{label}</th>)
+                            })}
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>15/11/2022</td>
-                <td>Enviado</td>
-                <td>21 kg</td>
-                <td>Alfredo Nunez</td>
-                <td>Johnny De Castro</td>
-                </tr>
-                <tr>
-                <th scope="row">2</th>
-                <td>10/11/2022</td>
-                <td>Entregado</td>
-                <td>1 kg</td>
-                <td>Elkin Lopez</td>
-                <td>Ezequiel Elguedo</td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td>15/11/2022</td>
-                <td>Enviado</td>
-                <td>15 kg</td>
-                <td>Daniel Abudinen</td>
-                <td>Johnny De Castro</td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td>15/11/2022</td>
-                <td>Enviado</td>
-                <td>100 kg</td>
-                <td>Roderick Arias</td>
-                <td>Mision TIC 2022</td>
-                </tr>
+             {/* Creación de contenido de la constante envios    */}
+            {envios.map((envios, index) => {
+                            return (
+                                <tr>
+                                    <th scope="row">{envios.id}</th>
+                                    <td>{envios.pickupDate}</td>
+                                    <td>{envios.state}</td>
+                                    <td>{envios.weight}</td>
+                                    <td>{envios.sender}</td>
+                                    <td>{envios.toRecipient}</td>
+                                    
+                                    <td className="d-flex gap-2 justify-content-center">
+                                        <Link className="btn btn-success" to={''}>Edit</Link>                            
+                                    </td>
+                                </tr>)
+                        })}
             </tbody>
             </table>
         </div>  
