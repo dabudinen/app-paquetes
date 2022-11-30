@@ -1,14 +1,38 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import SectionTitle from "../SectionTitle";
+import FormInput from "../FormInput";
 
 export default function PageLogin() {
-  const navigate = useNavigate();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate("/estados_envios");
-  };
+  const msjs = "";
+  const [msj, setMsj] = useState(msjs);
 
+  const ingreso = async (e) => {
+    const user = {};
+    e.preventDefault();
+    if (document.getElementById("email").value.length != 0) {
+      user.email = document.getElementById("email").value;
+    } else {
+      setMsj("el campo email está vacío");
+    }
+    if (document.getElementById("password").value.length != 0) {
+      user.password = document.getElementById("password").value;
+    } else {
+      setMsj("el campo clave está vacío");
+    }
+    const apiUrl = "http://127.0.0.1:3000/api/users/login";
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: 'include',
+      body: JSON.stringify(user),
+    });
+    const data = await response.json();
+    const mensaje = data.message;
+    setMsj(mensaje);
+  }
   return (
     <section className="bg-light py-5 ">
       <div className="container px-5 my-5">
@@ -27,7 +51,7 @@ export default function PageLogin() {
                   </div>
                   <div className="col-md-6 col-lg-7 d-flex align-items-center">
                     <div className="card-body p-4 p-lg-5 text-black">
-                      <form>
+                      <form onSubmit={ingreso}>
                         <div className="d-flex align-items-center mb-3 pb-1">
                           <span className="h1 fw-bold mb-0">
                             <img src="/img/logo-instaya.png" alt="" />
@@ -37,51 +61,19 @@ export default function PageLogin() {
                         <h5 className="fw-normal mb-3 pb-3">
                           Ingresa a tu cuenta
                         </h5>
-
-                        <div className="form-outline mb-4">
-                          <input
-                            type="email"
-                            id="form2Example17"
-                            className="form-control form-control-lg"
-                          />
-                          <label
-                            className="form-label"
-                            htmlFor="form2Example17"
-                          >
-                            Email
-                          </label>
-                        </div>
-
-                        <div className="form-outline mb-4">
-                          <input
-                            type="password"
-                            id="form2Example27"
-                            className="form-control form-control-lg"
-                          />
-                          <label
-                            className="form-label"
-                            htmlFor="form2Example27"
-                          >
-                            Clave
-                          </label>
-                        </div>
-
+                        <FormInput label="Email" inputId="email" type="email" />
+                        <FormInput label="Clave" inputId="password" type="password" />
+                        
                         <div className="pt-1 mb-4">
-                          <button
-                            className="btn btn-dark btn-lg btn-block"
-                            type="button"
-                            onClick={handleSubmit}
-                          >
-                            Login
+                          <button className="btn btn-dark btn-lg btn-block" type="submit">Ingresar
                           </button>
-                        </div>
-
+                        </div><span className="text-danger">{msj}</span><br />
                         <a className="small text-muted" href="#!">
                           Olvidate tu clave?
                         </a>
                         <p className="mb-5 pb-lg-2">
-                          No tienes cuenta?{" "}
-                          <a href="/register">registrate aquí</a>
+                          No tienes cuenta? 
+                          <a href="/register"> registrate aquí</a>
                         </p>
                         <a href="#!" className="small text-muted">
                           Terminos y condiciones.

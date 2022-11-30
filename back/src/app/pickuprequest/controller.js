@@ -46,3 +46,6 @@ export const addPackage = async (req, res) => {
 export const getAllPkg = async (req, res) => {
   await Package.find({ sender: '' });
 };
+export const editAllPkg = async (req, res) => {
+  await Package.find({ sender: '' });
+};

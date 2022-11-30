@@ -4,3 +4,4 @@ const router = Router();
 
 router.get('/pkg', Package.getAllPkg);
 router.post('/pkg', Package.addPackage);
+router.put('/pkg', Package.editAllPkg);

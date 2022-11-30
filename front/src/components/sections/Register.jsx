@@ -29,7 +29,7 @@ export default function PageRegister() {
     } else {
       setMsj("El password no coincide");
     }
-//     console.log(newuser);
+
     const apiUrl = "http://127.0.0.1:3000/api/users/add";
     const response = await fetch(apiUrl, {
       method: "POST",
@@ -43,8 +43,6 @@ export default function PageRegister() {
 
     setMsj(data.message);
 
-    
-    
   };
     return (
     <section className="bg-light py-5 ">

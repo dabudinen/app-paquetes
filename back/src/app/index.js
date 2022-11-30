@@ -6,16 +6,18 @@ import path from 'path';
 import { welcome } from './welcome';
 import users from './users';
 const cors = require('cors');
+const favicon = require('serve-favicon');
 // import package from './pickuprequest';
 const cookieParser = require('cookie-parser');
-const favicon = require('serve-favicon');
-
 const app = express();
-app.use(
-  cors({
-    origin: '*',
-  })
-);
+
+const corsOptions = {
+  origin: 'http://127.0.0.1:3001',
+  methods: 'GET,HEAD,POST,PATCH,DELETE,OPTIONS',
+  credentials: true,
+  allowedHeaders: 'Content-Type, Authorization, X-Requested-With, Accept',
+};
+app.use(cors(corsOptions));
 app.use(compression());
 app.use(urlencoded({ extended: false }));
 app.use(json());
@@ -23,7 +25,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')));
 
+app.use(function (req, res, next) {
+  res.header('Content-Type', 'application/json;charset=UTF-8');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
 app.get('/', welcome);
+
 app.use('/api/users/', users);
 // app.use('/api/pkg/', package);
 

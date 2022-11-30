@@ -1,7 +1,8 @@
 import Users from './schema';
 import * as argon2 from 'argon2';
 // import jwt from 'jsonwebtoken';
-// const { sign, verify } = jwt;
+const jwt = require('jsonwebtoken');
+// const { sign, verify } = jwt
 
 // registro de usuarios
 export const addUser = async (req, res) => {
@@ -40,30 +41,33 @@ export const login = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   // await Users.find({ email: data.email });
-  const user = await Users.findOne({ email }).select('password');
+  const user = await Users.findOne({ email }).select(
+    'password firstName documentId id'
+  );
   if (!user) {
     res.json({
       message: 'datos inválidos, verifica tu usuario y/o clave',
     });
     return null;
   } else {
-    try {
-      if (await argon2.verify(user.password, password)) {
-        //
-        // res.cookie(`cookie_session`, 'cookieval', {
-        //   maxAge: 604800000, // 7 days
-        //   secure: true,
-        //   httpOnly: true,
-        //   sameSite: 'lax',
-        // });
-        res.json({ message: `Todo cool ${user}` });
-      } else {
-        res.json({
-          message: 'datos inválidos, verifica tu usuario y/o clave',
+    if (await argon2.verify(user.password, password)) {
+      const usrkey = user.documentId + 'LKRUEOLJHLKL_232KJ_2224DASDSDFLJSDFL';
+      const token = jwt.sign({ id: user.id, role: user.documentId }, usrkey);
+      return res
+        .cookie('cookie_session', token, {
+          maxAge: 604800000,
+          secure: false,
+          httpOnly: true,
+          sameSite: 'lax',
+        })
+        .status(200)
+        .json({
+          message: `Has ingresado como ${user.firstName}`,
         });
-      }
-    } catch (err) {
-      // internal failure
+    } else {
+      res.json({
+        message: 'datos inválidos, verifica tu usuario y/o clave',
+      });
     }
   }
 
