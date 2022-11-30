@@ -1,37 +1,38 @@
 import compression from 'compression';
 import { json, urlencoded } from 'body-parser';
-// const bodyParser = require('body-parser');
+import env from '../config/env.json';
+import express from 'express';
+import path from 'path';
+import { welcome } from './welcome';
+import users from './users';
+// import package from './pickuprequest';
 const cookieParser = require('cookie-parser');
-const env = require('../config');
-const express = require('express');
-const app = express();
-const path = require('path');
 const favicon = require('serve-favicon');
+
+const app = express();
 
 app.use(compression());
 app.use(urlencoded({ extended: false }));
 app.use(json());
 app.use(cookieParser());
-app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, '../public')));
-app.listen(env.port, env.host);
+app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')));
 
-module.exports = app;
+app.get('/', welcome);
+app.use('/api/users/', users);
+// app.use('/api/pkg/', package);
 
-/*
-var logger = require('morgan');
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-// uncomment after placing your favicon in /public
-//
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+export const serverInit = () => {
+  app.listen(env.port, env.host, () => {
+    console.log('Inicia el servidor');
+  });
+};
 
-app.use('/', index);
-app.use('/users', users)
+/* 
+Componentes: 
+URL> /api/users/ POST 
+LOGIN y ADD USER 
 
-module.exports = app;
+URL> /api/pkg/ POST GET PUT
+NUEVO PKG, LISTADO DE PKG, ACTUALIZAR ESTADO DE PKG
 */

@@ -3,9 +3,8 @@ import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Integrantes } from "./components/Integrantes";
 import PageInicio from "./components/PageInicio";
-import PageLogin from "./components/PageLogin";
-import PageRegister from "./components/PageRegister";
-import PagePackageManager from "./components/PagePackageManager";
+import PageLogin from "./components/sections/PageLogin";
+import PageRegister from "./components/sections/Register";
 import PageContact from "./components/PageContact";
 import NotFound from "./components/NotFound";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -24,7 +23,6 @@ function App() {
             <Route path="/" element={<PageInicio />} />
             <Route path="/login" element={<PageLogin />} />
             <Route path="/register" element={<PageRegister />} />
-            <Route path="/packagemanager" element={<PagePackageManager />} />
             <Route path="/contact" element={<PageContact />} />
             <Route path="*" element={<NotFound />}/> 
             <Route path="/estados_envios" element={<PageEstadosEnvios />} />

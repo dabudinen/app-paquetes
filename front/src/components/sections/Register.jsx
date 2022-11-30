@@ -1,16 +1,15 @@
 import React from "react";
+import SectionTitle from "../SectionTitle";
+import FormInput from "../FormInput";
 
 export default function PageRegister() {
   return (
     <section className="bg-light py-5 ">
       <div className="container px-5 my-5">
-        <div className="text-center mb-5">
-          <h1 className="fw-bolder">Ingreso de usuarios</h1>
-          <p className="lead fw-normal text-muted mb-0">
-            Ingresa al sistema de gestión de envíos con tu usuario asignado
-          </p>
-        </div>
-
+        <SectionTitle
+          secctionTitle="Registro de usuarios"
+          sectionDescription="Registrate para ingresar al sistema de gestión de envíos con tu usuario asignado"
+        />
         <div className="container py-5">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col col-xl-10">
@@ -21,33 +20,19 @@ export default function PageRegister() {
                   </div>
                   <div className="col-md-6 col-lg-7 d-flex align-items-center">
                     <div className="card-body p-4 p-lg-5 text-black">
+{ /* Form start */}
                       <form>
                         <div className="d-flex align-items-center mb-3 pb-1">
                           <span className="h1 fw-bold mb-0">
                             <img src="/img/logo-instaya.png" alt="" />
                           </span>
                         </div>
-
                         <h5 className="fw-normal mb-3 pb-3">
                           Ingresa a tu cuenta
                         </h5>
 
                         <div className="row">
-                          <div className="col-md-6 mb-4">
-                            <div className="form-outline">
-                              <input
-                                type="text"
-                                id="form3Example1m"
-                                className="form-control form-control-lg"
-                              />
-                              <label
-                                className="form-label"
-                                htmlFor="form3Example1m"
-                              >
-                                Nombre
-                              </label>
-                            </div>
-                          </div>
+                          <FormInput />
                           <div className="col-md-6 mb-4">
                             <div className="form-outline">
                               <input
@@ -62,19 +47,7 @@ export default function PageRegister() {
                                 Apellido
                               </label>
                             </div>
-                          
-                          {/*<input
-                                type="number"
-                                id="form3Example3m"
-                                className="form-control form-control-lg"
-                              />
-                              <label
-                                className="form-label"
-                                htmlFor="form3Example3m"
-                              >
-                               C.C.
-  </label>*/ }
-                              </div>
+                          </div>
                         </div>
 
                         <div className="d-md-flex justify-content-start align-items-center mb-4 py-2">
@@ -154,7 +127,10 @@ export default function PageRegister() {
                             id="form3Example90"
                             className="form-control form-control-lg"
                           />
-                          <label className="form-label" htmlFor="form3Example90">
+                          <label
+                            className="form-label"
+                            htmlFor="form3Example90"
+                          >
                             Direccion
                           </label>
                         </div>
@@ -165,7 +141,10 @@ export default function PageRegister() {
                             id="form3Example97"
                             className="form-control form-control-lg"
                           />
-                          <label className="form-label" htmlFor="form3Example97">
+                          <label
+                            className="form-label"
+                            htmlFor="form3Example97"
+                          >
                             Email ID
                           </label>
                         </div>
@@ -178,14 +157,14 @@ export default function PageRegister() {
                             Borrar
                           </button>
                           <a href="/login">
-                          <button
-                            type="button"
-                            className="btn btn-primary btn-lg ms-2"
-                          >
-                            Ya tienes cuenta? 
-                          </button >
+                            <button
+                              type="button"
+                              className="btn btn-primary btn-lg ms-2"
+                            >
+                              Ya tienes cuenta?
+                            </button>
                           </a>
-                          
+
                           <button
                             type="button"
                             className="btn btn-warning btn-lg ms-2"
@@ -194,6 +173,7 @@ export default function PageRegister() {
                           </button>
                         </div>
                       </form>
+{ /* Form end */}
                     </div>
                   </div>
                 </div>

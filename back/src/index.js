@@ -1,7 +1,5 @@
-// import { app } from './app';
-// app;
-const routes = require('./app/routes');
-const server = require('./app');
+import { serverInit } from './app';
+import { dbStart } from './db';
 
-server.use('/', routes);
-console.log(`Express está funcionando`);
+dbStart(); // db conn
+serverInit(); // start express
