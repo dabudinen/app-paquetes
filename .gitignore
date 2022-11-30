@@ -119,4 +119,6 @@ dist
 env.json
 src/env.json
 src/*/env.json
-
+back/env.json
+back/*/env.json
+back/*/*/env.json
