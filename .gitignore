@@ -115,3 +115,8 @@ dist
 *.njsproj
 *.sln
 *.sw?
+
+env.json
+src/env.json
+src/*/env.json
+
