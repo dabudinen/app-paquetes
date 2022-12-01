@@ -8,11 +8,9 @@ const packageSchema = new Schema(
       ref: Users,
     },
     arrivedBefore24h: { type: Boolean, default: false },
-    isFragile: { type: Boolean, default: false },
     width: Number,
     height: Number,
     depth: Number,
-    weight: Number,
     state: {
       type: String,
       enum: ['guardado', 'cancelado', 'cumplido'],

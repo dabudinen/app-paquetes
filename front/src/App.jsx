@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { Integrantes } from "./components/Integrantes";
@@ -7,9 +8,9 @@ import PageLogin from "./components/sections/PageLogin";
 import PageRegister from "./components/sections/Register";
 import PageContact from "./components/PageContact";
 import NotFound from "./components/NotFound";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import PageEstadosEnvios from "./components/PageEstadosEnvios";
-import PageNuevoEnvio from "./components/PageNuevoEnvio";
+
+import PageEstadosEnvios from "./components/sections/PageEstadosEnvios";
+import PageNuevoEnvio from "./components/sections/PageNuevoEnvio";
 
 function App() {
   const [count, setCount] = useState(0);
