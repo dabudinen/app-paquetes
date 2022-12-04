@@ -1,11 +1,12 @@
-import DB_URI from '../config/env.json';
+import {} from 'dotenv/config';
 import mongoose from 'mongoose';
 
-export const dbStart = async () => {
+export const dbStart = async (dbUrl) => {
   try {
-    await mongoose.connect(DB_URI.DB_URI);
-    console.log('Conectado a la base de datos');
+    await mongoose.connect(dbUrl);
+    console.log('Database connection... ok.');
   } catch (error) {
-    console.log(error);
+    console.log({ 'Database connection... error': error });
+    process.exit();
   }
 };

@@ -56,5 +56,5 @@ const msj = `
 `;
 
 export const welcome = (req, res) => {
-  res.send(msj);
+  res.status(200).send(msj);
 };

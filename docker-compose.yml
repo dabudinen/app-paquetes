@@ -1,0 +1,16 @@
+version: '3'
+services:
+  backend-api:
+    build: 
+      context: ./back
+      dockerfile: ./back/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+  frontend:
+    build:
+      context: ./front
+      dockerfile: ./front/Dockerfile
+    ports:
+      - "3001:3001"

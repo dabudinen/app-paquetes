@@ -1,44 +1,29 @@
 import Package from './schema';
 
 export const addPackage = async (req, res) => {
-  if (
-    !req.body ||
-    !req.body.sender ||
-    !req.body.width ||
-    !req.body.height ||
-    !req.body.depth ||
-    !req.body.weight ||
-    !req.body.pickupDate ||
-    !req.body.fromCity ||
-    !req.body.fromAddress ||
-    !req.body.toCity ||
-    !req.body.toAddress ||
-    !req.body.toRecipient ||
-    !req.body.toRecipientPhone ||
-    !req.body.toRecipientId
-  ) {
-    return res.status(400).json({ message: 'Debes rellenar todos los campos' });
-  }
+  const data = req.body;
+
   try {
     const addPackage = new Package({
-      sender: req.body.sender,
-      width: req.body.width,
-      height: req.body.height,
-      depth: req.body.depth,
-      pickupDate: req.body.pickupDate,
-      fromCity: req.body.fromCity,
-      fromAddress: req.body.fromAddress,
-      toCity: req.body.toCity,
-      toAddress: req.body.toAddress,
-      toRecipient: req.body.toRecipientId,
-      toRecipientPhone: req.body.toRecipientId,
-      toRecipientId: req.body.toRecipientId,
+      sender: data.sender,
+      width: data.width,
+      height: data.height,
+      depth: data.depth,
+      pickupDate: data.pickupDate,
+      fromCity: data.fromCity,
+      fromAddress: data.fromAddress,
+      toCity: data.toCity,
+      toAddress: data.toAddress,
+      toRecipient: data.toRecipientId,
+      toRecipientPhone: data.toRecipientId,
+      toRecipientId: data.toRecipientId,
     });
     await addPackage.save();
 
     res.json({ message: 'Sus datos han sido registrados' });
   } catch (error) {
-    res.status(500).json({ message: 'error al crear usuario' });
+    res.status(500).json({ message: 'error al crear paquete' });
+    console.error({ 'Error al crear paquete': error });
   }
   const ipaddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   console.log('IP visitante ' + ipaddress);

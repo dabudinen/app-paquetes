@@ -1,7 +1,10 @@
 import { Router } from 'express';
 import * as Package from './controller';
+
 const router = Router();
 
-router.get('/pkg', Package.getAllPkg);
-router.post('/pkg', Package.addPackage);
-router.put('/pkg', Package.editAllPkg);
+router.get('/all', Package.getAllPkg);
+router.post('/add', Package.addPackage);
+router.put('/edit', Package.editAllPkg);
+
+module.exports = router;

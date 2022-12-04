@@ -1,48 +1,47 @@
-import compression from 'compression';
-import { json, urlencoded } from 'body-parser';
-import env from '../config/env.json';
 import express from 'express';
+import cors from 'cors';
+import compression from 'compression';
 import path from 'path';
+import cookieParser from 'cookie-parser';
+import favicon from 'serve-favicon';
+import {} from 'dotenv/config';
+import { json } from 'body-parser';
+import { allowHeaderResponse, authorization } from './middleware';
 import { welcome } from './welcome';
 import users from './users';
-const cors = require('cors');
-const favicon = require('serve-favicon');
-// import package from './pickuprequest';
-const cookieParser = require('cookie-parser');
-const app = express();
+import Package from './pickuprequest';
 
 const corsOptions = {
-  origin: 'http://127.0.0.1:3001',
+  origin: process.env.CLIENT_URL,
   methods: 'GET,HEAD,POST,PATCH,DELETE,OPTIONS',
   credentials: true,
+  optionSuccessStatus: 200,
   allowedHeaders: 'Content-Type, Authorization, X-Requested-With, Accept',
 };
+const app = express();
+const faviconPath = path.join(__dirname, '../public', 'favicon.ico');
 app.use(cors(corsOptions));
 app.use(compression());
-app.use(urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, '../public')));
 app.use(json());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../public')));
-app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')));
+app.use(favicon(faviconPath));
 
-app.use(function (req, res, next) {
-  res.header('Content-Type', 'application/json;charset=UTF-8');
-  res.header('Access-Control-Allow-Credentials', true);
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  next();
-});
 app.get('/', welcome);
 
+app.all('/api/users/', allowHeaderResponse, users);
 app.use('/api/users/', users);
-// app.use('/api/pkg/', package);
+app.use('/api/pkg/', Package);
 
-export const serverInit = () => {
-  app.listen(env.port, env.host, () => {
-    console.log('Inicia el servidor');
-  });
+export const serverInit = (port, host) => {
+  try {
+    app.listen(port, host, () => {
+      console.log(`Api up and running at: http://localhost:${port}`);
+    });
+  } catch (error) {
+    console.error({ 'Server error': error });
+    process.exit();
+  }
 };
 
 /* 

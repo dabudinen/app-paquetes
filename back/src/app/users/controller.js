@@ -1,14 +1,16 @@
 import Users from './schema';
 import * as argon2 from 'argon2';
-// import jwt from 'jsonwebtoken';
-const jwt = require('jsonwebtoken');
-// const { sign, verify } = jwt
+import { sign, verify } from 'jsonwebtoken';
+import {} from 'dotenv/config';
 
 // registro de usuarios
 export const addUser = async (req, res) => {
+  console.log('solictud de registro de usuario');
   const data = req.body;
   if (!data.firstName || !data.password || !data.email || !data.documentId) {
-    return res.status(400).json({ message: 'Debes rellenar todos los campos' });
+    return res.status(400).json({
+      message: 'Debes rellenar todos los campos',
+    });
   }
   const checkID = await Users.find({ firstName: data.documentId });
   const checkEmail = await Users.find({ email: data.email });
@@ -28,8 +30,7 @@ export const addUser = async (req, res) => {
       password: hash,
     });
     await addUser.save();
-    console.log(addUser);
-    res.json({ message: 'usuario registrado exitosamente' });
+    return res.status(200).json({ message: 'usuario registrado exitosamente' });
   } catch (error) {
     res.status(500).json({ message: 'error al crear usuario' });
   }
@@ -37,13 +38,13 @@ export const addUser = async (req, res) => {
   console.log('IP visitante ' + ipaddress);
 };
 
-export const login = async (req, res) => {
+export const userLogin = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  // await Users.find({ email: data.email });
   const user = await Users.findOne({ email }).select(
     'password firstName documentId id'
   );
+
   if (!user) {
     res.json({
       message: 'datos inválidos, verifica tu usuario y/o clave',
@@ -51,18 +52,24 @@ export const login = async (req, res) => {
     return null;
   } else {
     if (await argon2.verify(user.password, password)) {
-      const usrkey = user.documentId + 'LKRUEOLJHLKL_232KJ_2224DASDSDFLJSDFL';
-      const token = jwt.sign({ id: user.id, role: user.documentId }, usrkey);
+      const token = sign(
+        { id: user.id, document: user.documentId, name: user.firstName },
+        process.env.SECRET,
+        {
+          expiresIn: process.env.TOCKEN_EXPIRES,
+        }
+      );
       return res
-        .cookie('cookie_session', token, {
-          maxAge: 604800000,
-          secure: false,
+        .cookie(process.env.ACCESS_TOKEN, token, {
+          maxAge: process.env.COOKIE_EXPIRES,
           httpOnly: true,
+          secure: false,
           sameSite: 'lax',
         })
         .status(200)
         .json({
           message: `Has ingresado como ${user.firstName}`,
+          estatus: 'ok',
         });
     } else {
       res.json({
@@ -102,23 +109,26 @@ const verifycode = verify(token, "secret");
 console.log(verifycode);
 */
 
-export const updateUser = (req, res) => {
-  res.json('MyVariable');
-};
-export const createCookie = (req, res) => {
-  res.cookie(`cookie_session`, 'cookieval', {
-    maxAge: 604800000, // 7 days
-    secure: true,
-    httpOnly: true,
-    sameSite: 'lax',
-  });
-  res.send('MyVariable');
+export const authUser = (req, res, next) => {
+  const token = req.cookies[process.env.ACCESS_TOKEN];
+  if (token) {
+    try {
+      const data = verify(token, process.env.SECRET);
+      console.log(data);
+      req.name = data.name;
+      return res.json({ status: 'ok', name: req.name });
+    } catch {
+      console.log('error');
+    }
+  }
+  return next();
 };
 
-export const deleteCookie = (req, res) => {
+export const closeSession = (req, res, next) => {
   res.clearCookie();
-  res.cookie(`cookie_session`, 'cookieval', {
+  res.cookie(process.env.ACCESS_TOKEN, '', {
     maxAge: -86400000, // yesterday
   });
   res.send({ message: 'Los datos de su sesion han sido borrados' });
+  return next();
 };
