@@ -31,7 +31,7 @@ app.get('/', welcome);
 
 app.all('/api/users/', allowHeaderResponse, users);
 app.use('/api/users/', users);
-app.use('/api/pkg/', Package);
+app.use('/api/pkg/', authorization, Package);
 
 export const serverInit = (port, host) => {
   try {

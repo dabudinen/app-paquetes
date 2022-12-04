@@ -29,7 +29,15 @@ export const addPackage = async (req, res) => {
   console.log('IP visitante ' + ipaddress);
 };
 export const getAllPkg = async (req, res) => {
-  await Package.find({ sender: '' });
+  const data = req.body;
+  try {
+    const paquetes = await Package.find({ sender: data.sender });
+    res.json(paquetes);
+  } catch (error) {
+    res.status(500).json({
+      message: 'Algo fallo al consultar el listado de paquetes',
+    });
+  }
 };
 export const editAllPkg = async (req, res) => {
   await Package.find({ sender: '' });
