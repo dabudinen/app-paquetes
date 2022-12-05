@@ -8,12 +8,12 @@ export default function PageEstadosEnvios() {
     const [estatus, setEstatus] = useState(false);
     const [idUser, setIdUser] = useState("");
     const [aEnvios, setAEnvios] = useState([]);
-    const [idEnvio, setIdEnvio] = useState("");
-    const [pickupDate, setPickupDate] = useState("");
-    const [state, setState] = useState("");
-    const [weight, setWeight] = useState("");
-    const [trackingNumber, setTrackingNumber] = useState("");
-    const [toRecipient, setToRecipient] = useState("");
+    // const [idEnvio, setIdEnvio] = useState("");
+    // const [pickupDate, setPickupDate] = useState("");
+    // const [state, setState] = useState("");
+    // const [weight, setWeight] = useState("");
+    // const [trackingNumber, setTrackingNumber] = useState("");
+    // const [toRecipient, setToRecipient] = useState("");
 
     useEffect(() => {
         const url = "http://127.0.0.1:3000/api/users/auth";
@@ -32,9 +32,11 @@ export default function PageEstadosEnvios() {
                     setIdUser(data.id);
                 } else {
                     setEstatus(false);
+                    setMsj(`No tienes permisos para acceder a esta página`);
                 }
             }, (error) => {
                 setEstatus(false);
+                setMsj(`No tienes permisos para acceder a esta página`);
             });
         getPackages();
     }, [])
@@ -128,7 +130,8 @@ export default function PageEstadosEnvios() {
                                 <tbody>
                                     {/* Creación de contenido de la constante envios    */}
                                     {aEnvios.map((envios, index) => {
-        {/* "_id": "638d340fbc5338bd01cbe934",
+        {/*
+         "_id": "638d340fbc5338bd01cbe934",
         "sender": "638c18620d53a99b5906553a",
         "arrivedBefore24h": false,
         "width": 20,
@@ -144,7 +147,8 @@ export default function PageEstadosEnvios() {
         "toRecipientPhone": "data.toRecipientId",
         "toRecipientId": "data.toRecipientId",
         "createdAt": "2022-12-04T23:58:07.772Z",
-        "updatedAt": "2022-12-04T23:58:07.772Z" */}
+        "updatedAt": "2022-12-04T23:58:07.772Z" 
+    */}
                                         return (
                                             <tr key={envios._id} onClick={() => { console.log(envios._id) }} >
                                                 <th scope="row">{index}</th>

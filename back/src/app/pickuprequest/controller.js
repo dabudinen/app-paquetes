@@ -26,8 +26,8 @@ export const addPackage = async (req, res) => {
     res.status(500).json({ message: 'error al crear paquete' });
     console.error({ 'Error al crear paquete': error });
   }
-  const ipaddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-  console.log('IP visitante ' + ipaddress);
+  // const ipaddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  // console.log('IP visitante ' + ipaddress);
 };
 
 export const getAllPkg = async (req, res) => {
