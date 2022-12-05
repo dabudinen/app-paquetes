@@ -1,4 +1,5 @@
 import Package from './schema';
+import { verify } from 'jsonwebtoken';
 
 export const addPackage = async (req, res) => {
   const data = req.body;
@@ -28,17 +29,24 @@ export const addPackage = async (req, res) => {
   const ipaddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   console.log('IP visitante ' + ipaddress);
 };
+
 export const getAllPkg = async (req, res) => {
-  const data = req.body;
-  try {
-    const paquetes = await Package.find({ sender: data.sender });
-    res.json(paquetes);
-  } catch (error) {
-    res.status(500).json({
-      message: 'Algo fallo al consultar el listado de paquetes',
-    });
+  const token = req.cookies[process.env.ACCESS_TOKEN];
+  if (token) {
+    try {
+      const data = verify(token, process.env.SECRET);
+      console.log(data);
+      const paquetes = await Package.find({ sender: data.id });
+      console.log(paquetes);
+      res.json(paquetes);
+    } catch (error) {
+      res.status(500).json({
+        message: 'Algo fallo al consultar el listado de paquetes',
+      });
+    }
   }
 };
+
 export const editAllPkg = async (req, res) => {
   await Package.find({ sender: '' });
 };

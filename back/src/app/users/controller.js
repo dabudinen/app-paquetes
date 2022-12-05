@@ -116,7 +116,7 @@ export const authUser = (req, res, next) => {
       const data = verify(token, process.env.SECRET);
       console.log(data);
       req.name = data.name;
-      return res.json({ status: 'ok', name: req.name });
+      return res.json({ status: 'ok', name: req.name, id: data.id });
     } catch {
       console.log('error');
     }

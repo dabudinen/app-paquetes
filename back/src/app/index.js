@@ -7,6 +7,7 @@ import favicon from 'serve-favicon';
 import {} from 'dotenv/config';
 import { json } from 'body-parser';
 import { allowHeaderResponse, authorization } from './middleware';
+import { authUser } from './users/controller';
 import { welcome } from './welcome';
 import users from './users';
 import Package from './pickuprequest';
@@ -31,6 +32,7 @@ app.get('/', welcome);
 
 app.all('/api/users/', allowHeaderResponse, users);
 app.use('/api/users/', users);
+// app.all('/api/pkg', authUser, authorization, Package);
 app.use('/api/pkg/', authorization, Package);
 
 export const serverInit = (port, host) => {
