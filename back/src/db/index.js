@@ -7,6 +7,6 @@ export const dbStart = async (dbUrl) => {
     console.log('Database connection... ok.');
   } catch (error) {
     console.log({ 'Database connection... error': error });
-    process.exit();
+    process.exit(1);
   }
 };

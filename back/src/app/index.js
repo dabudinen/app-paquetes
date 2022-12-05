@@ -19,6 +19,7 @@ const corsOptions = {
   optionSuccessStatus: 200,
   allowedHeaders: 'Content-Type, Authorization, X-Requested-With, Accept',
 };
+// , Credentials
 const app = express();
 const faviconPath = path.join(__dirname, '../public', 'favicon.ico');
 app.use(cors(corsOptions));

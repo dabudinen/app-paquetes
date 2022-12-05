@@ -3,14 +3,17 @@ services:
   backend-api:
     build: 
       context: ./back
-      dockerfile: ./back/Dockerfile
+      dockerfile: ./Dockerfile
+    restart: always
     ports:
       - "3000:3000"
     environment:
       - PORT=3000
+    extra_hosts:
+      - "dockerhost:172.17.0.1"
   frontend:
     build:
       context: ./front
-      dockerfile: ./front/Dockerfile
+      dockerfile: ./Dockerfile
     ports:
       - "3001:3001"
